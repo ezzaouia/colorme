@@ -18,36 +18,79 @@ export class D3ColorPicker {
         this.colorLevels = 10;
         this.colors = [
             {
-                min: '#FF8A80',
-                max: '#D50000'
+                min: '#EF5350',
+                max: '#B71C1C'
             },
             {
-                min: '#EA80FC',
-                max: '#AA00FF'
+                min: '#EC407A',
+                max: '#880E4F'
             },
             {
-                min: '#EA80FC',
-                max: '#AA00FF'
+                min: '#AB47BC',
+                max: '#4A148C'
             },
             {
-                min: '#EA80FC',
-                max: '#AA00FF'
+                min: '#7E57C2',
+                max: '#311B92'
             },
             {
-                min: '#FF8A80',
-                max: '#D50000'
+                min: '#5C6BC0',
+                max: '#1A237E'
             },
             {
-                min: '#EA80FC',
-                max: '#AA00FF'
+                min: '#42A5F5',
+                max: '#0D47A1'
             },
             {
-                min: '#EA80FC',
-                max: '#AA00FF'
+                min: '#29B6F6',
+                max: '#01579B'
             },
             {
-                min: '#EA80FC',
-                max: '#AA00FF'
+                min: '#26C6DA',
+                max: '#006064'
+            },
+            {
+                min: '#26A69A',
+                max: '#004D40'
+            },
+            {
+                min: '#66BB6A',
+                max: '#1B5E20'
+            },
+            {
+                min: '#9CCC65',
+                max: '#33691E'
+            },
+            {
+                min: '#D4E157',
+                max: '#827717'
+            },
+
+
+            {
+                min: '#FFEE58',
+                max: '#F57F17'
+            },
+            {
+                min: '#FFCA28',
+                max: '#FF6F00'
+            },
+            {
+                min: '#FFA726',
+                max: '#E65100'
+            },
+            {
+                min: '#FF7043',
+                max: '#BF360C'
+            },
+
+            {
+                min: '#8D6E63',
+                max: '#3E2723'
+            },
+            {
+                min: '#BDBDBD',
+                max: '#212121'
             }
         ];
 
@@ -111,7 +154,6 @@ export class D3ColorPicker {
                             currentSelectedColor['selectedColor'] = curretColor;
                             currentSelectedColor['colorLevelIndex'] = index;
                             currentSelectedColor['colorIndex'] = i;
-                            console.log('==== , ', currentSelectedColor)
                         })
 
                 }); // end each

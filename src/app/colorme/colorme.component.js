@@ -8,7 +8,7 @@ import { D3ColorPicker } from '../d3colorpicker/colorpicker.component';
 
 class ColorMeController extends D3ColorPicker {
 
-    constructor($log, $http, $state, $firebaseObject, $scope, firebase, $element, $firebaseArray) {
+    constructor($log, $http, $state, $firebaseObject, $scope, firebase, $element, $firebaseArray, $mdToast) {
         'ngInject'
         super();
         this.$log = $log.getInstance(ColorMeController.name);
@@ -22,6 +22,7 @@ class ColorMeController extends D3ColorPicker {
         this.selectedColor;
         this.$element = $element;
         this.currentSelectedQuestionColor = null;
+        this.$mdToast = $mdToast;
     }
 
     log(...msg) {
@@ -39,7 +40,7 @@ class ColorMeController extends D3ColorPicker {
                 this.currentQuestion = questions[this.currentQuestionIndex];
             });
 
-        
+
     }
 
     loadQuestions() {
@@ -53,23 +54,37 @@ class ColorMeController extends D3ColorPicker {
     next() {
         this.log('next fired');
         if (!!!(this.currentSelectedColor && this.currentSelectedColor.selectedColor && this.currentSelectedColor.selectedColor)) {
-            alert('please select a color for this item');
+            this.showSimpleToast('Please select a color!')
             return;
         }
+        
+        /** First save current color in db */
+        this.save();
+        
+        /** move to the next */
         if (this.currentQuestionIndex < _.size(this.questions) - 1) {
             this.currentQuestion = this.questions[++this.currentQuestionIndex];
             super.draw(this.$element[0]);
         }
         else {
-            this.log('Yo Yo nice the end is here!!');
+            this.showSimpleToast('Thank you!!')
             this.$state.go('outro');
         }
     }
 
-    debug() {
-        this.currentSelectedColor = Object.assign(this.currentSelectedColor, { question: this.currentQuestion.title })
+    save() {
+        this.currentSelectedColor = Object.assign(this.currentSelectedColor, { question: this.currentQuestion.title }, {clientId: window.clientId})
         this.responses.$add(this.currentSelectedColor);
         this.log(this.currentSelectedColor);
+    }
+
+    showSimpleToast(msg) {
+        this.$mdToast.show(
+            this.$mdToast.simple()
+                .textContent(msg)
+                .position('top right')
+                .hideDelay(3000)
+        );
     }
 }
 
