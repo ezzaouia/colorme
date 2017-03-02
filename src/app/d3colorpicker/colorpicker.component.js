@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import template from './colorpicker.component.html';
 import './colorpicker.component.scss';
 
-class D3ColorPicker {
+export class D3ColorPicker {
 
     constructor() {
         this.squareWidth = 30;
@@ -53,6 +53,8 @@ class D3ColorPicker {
 
         this.svgWidth = _.size(this.colors) * (this.squareWidth + this.squareHPad) + this.margin.left + this.margin.right;
         this.svgHeight = this.colorLevels * (this.squareHeight + this.squareVPad) + this.margin.top + this.margin.bottom + this.squareVPad + this.currentHoveredColorH + this.currentHoveredColorH;
+        this.currentSelectedColor;
+        
     }
 
     draw(domElement) {
@@ -60,10 +62,17 @@ class D3ColorPicker {
         let squareVPad = this.squareVPad;
         let squareHPad = this.squareHPad;
         let currentHoveredColorH = this.currentHoveredColorH;
+        let currentSelectedColor  = {selectedColor: '', colorLevelIndex: -1, colorIndex:  -1};
+        this.currentSelectedColor = currentSelectedColor;
 
-
+        // init
+        this.svg = d3.select(domElement)
+            .select('#d3colorpicker')
+            .select('svg')
+            .remove();
 
         this.svg = d3.select(domElement)
+            .select('#d3colorpicker')
             .append('svg')
             .attr('width', this.svgWidth)
             .attr('height', this.svgHeight)
@@ -77,7 +86,7 @@ class D3ColorPicker {
             .attr('transform', (d, i) => { return `translate(${i * (this.squareWidth + this.squareHPad)}, ${0})` })
 
         this.svg.selectAll('g')
-            .attr('d', function (d) {
+            .attr('d', function (d, i) {
                 let self = this;
                 _.each(d, (color, index) => {
                     d3.select(self).append('rect')
@@ -91,14 +100,18 @@ class D3ColorPicker {
                             d3.select(this).attr('stroke', '#eee')
                             d3.select(this).attr('stroke-width', 2)
                             let curretColor = d3.select(this).attr('fill');
-                            d3.selectAll('.current-color').attr('fill', curretColor)
+                            d3.selectAll('.current-color').attr('fill', curretColor);
                         })
                         .on('click', function () {
                             d3.selectAll('.selected-color').attr('stroke', 'none')
                             d3.select(this).attr('stroke', '#555')
                             d3.select(this).attr('stroke-width', 2)
                             let curretColor = d3.select(this).attr('fill');
-                            d3.select('.selected-color').attr('fill', curretColor)
+                            d3.select('.selected-color').attr('fill', curretColor);
+                            currentSelectedColor['selectedColor'] = curretColor;
+                            currentSelectedColor['colorLevelIndex'] = index;
+                            currentSelectedColor['colorIndex'] = i;
+                            console.log('==== , ', currentSelectedColor)
                         })
 
                 }); // end each
@@ -110,7 +123,7 @@ class D3ColorPicker {
             .text('Current Color')
             .attr('y', this.colorLevels * (squareWidth + squareHPad) + 3 + this.currentHoveredTxtLabelH / 2)
             .classed('current-color-label', true)
-        
+
         this.svg.select('g')
             .append('text')
             .text('Selected Color')
@@ -181,8 +194,8 @@ class D3ColorPickerController extends D3ColorPicker {
 
     $onInit() {
         super.draw(this.$element[0]);
-        this.log('====>', super.dataGenerator(this.colors, this.colorLevels));
     }
+
 }
 
 const D3ColorPickerComponent = {

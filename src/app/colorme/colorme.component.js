@@ -1,19 +1,27 @@
 import { module } from 'angular';
 import * as _ from 'lodash';
+import * as d3 from 'd3';
 import template from './colorme.component.html';
 import './colorme.component.scss';
 
-class ColorMeController {
+import { D3ColorPicker } from '../d3colorpicker/colorpicker.component';
 
-    constructor($log, $http, $state, $firebaseObject, $scope, firebase) {
+class ColorMeController extends D3ColorPicker {
+
+    constructor($log, $http, $state, $firebaseObject, $scope, firebase, $element, $firebaseArray) {
         'ngInject'
+        super();
         this.$log = $log.getInstance(ColorMeController.name);
         this.$http = $http;
         this.currentQuestionIndex = 0;
         this.$state = $state;
         this.$firebaseObject = $firebaseObject;
+        this.$firebaseArray = $firebaseArray;
         this.$scope = $scope;
         this.firebase = firebase;
+        this.selectedColor;
+        this.$element = $element;
+        this.currentSelectedQuestionColor = null;
     }
 
     log(...msg) {
@@ -21,7 +29,9 @@ class ColorMeController {
     }
 
     $onInit() {
-        const FIREBASE_REF = this.firebase.ref;
+        super.draw(this.$element[0]);
+        const FIREBASE_REF = this.firebase.ref.child('responses');
+        this.responses = this.$firebaseArray(FIREBASE_REF)
 
         this.loadQuestions()
             .then((questions) => {
@@ -29,8 +39,7 @@ class ColorMeController {
                 this.currentQuestion = questions[this.currentQuestionIndex];
             });
 
-        let syncObject = this.$firebaseObject(FIREBASE_REF);
-        syncObject.$bindTo(this.$scope, 'data');
+        
     }
 
     loadQuestions() {
@@ -43,12 +52,24 @@ class ColorMeController {
 
     next() {
         this.log('next fired');
-        if (this.currentQuestionIndex < _.size(this.questions) - 1)
+        if (!!!(this.currentSelectedColor && this.currentSelectedColor.selectedColor && this.currentSelectedColor.selectedColor)) {
+            alert('please select a color for this item');
+            return;
+        }
+        if (this.currentQuestionIndex < _.size(this.questions) - 1) {
             this.currentQuestion = this.questions[++this.currentQuestionIndex];
+            super.draw(this.$element[0]);
+        }
         else {
             this.log('Yo Yo nice the end is here!!');
             this.$state.go('outro');
         }
+    }
+
+    debug() {
+        this.currentSelectedColor = Object.assign(this.currentSelectedColor, { question: this.currentQuestion.title })
+        this.responses.$add(this.currentSelectedColor);
+        this.log(this.currentSelectedColor);
     }
 }
 
