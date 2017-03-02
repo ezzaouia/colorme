@@ -6,17 +6,21 @@ function routeConfig($urlRouterProvider, $stateProvider, $locationProvider) {
   //$locationProvider.html5Mode(true).hashPrefix('!');
 
   $stateProvider
-   
+
     .state('home', {
-      url: '/',
+      url: '/intro',
       component: 'home'
     })
     .state('admin', {
       url: '/admin',
       component: 'admin'
+    })
+    .state('outro', {
+      url: '/outro',
+      component: 'outro'
     });
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/intro');
 
 }
 

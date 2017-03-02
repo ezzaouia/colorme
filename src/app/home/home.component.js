@@ -4,7 +4,7 @@ import './home.component.scss';
 
 class HomeController {
 
-    constructor($log, $rootScope) {
+    constructor($log) {
         'ngInject'
         this.$log = $log.getInstance(HomeController.name);
     }
@@ -12,16 +12,19 @@ class HomeController {
     log(...msg) {
         this.$log.debug(...msg);
     }
+
+    $onInit() {
+    }
 }
 
 const HomeComponent = {
     template,
     restricted: 'E',
-    controllerAs: 'vm',
+    controllerAs: 'home',
     controller: HomeController,
 };
 
 export default module('app.home', [
-    
+
 ])
     .component('home', HomeComponent);
