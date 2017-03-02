@@ -27,7 +27,7 @@ module.exports = {
         test: /\.ts$/,
         use: ['ng-annotate-loader', 'awesome-typescript-loader']
       },
-       {
+      {
         test: /\.js$/,
         use: ['ng-annotate-loader', 'babel-loader'],
         exclude: [helpers.root('node_modules')]
@@ -51,6 +51,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: config.get('app.title'),
       template: config.get('app.template'),
+    }),
+    new webpack.DefinePlugin({
+      FRB_API_KEY: JSON.stringify(process.env.FRB_API_KEY),
+      FRB_AUTHDOMAIN: JSON.stringify(process.env.FRB_AUTHDOMAIN),
+      FRB_DATABASEURL: JSON.stringify(process.env.FRB_DATABASEURL),
+      FRB_STORAGEBUCKET: JSON.stringify(process.env.FRB_STORAGEBUCKET),
+      FRB_MESSAGINGSENDERID: JSON.stringify(process.env.FRB_MESSAGINGSENDERID),
     })
   ],
   performance: {

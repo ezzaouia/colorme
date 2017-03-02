@@ -9,10 +9,12 @@ import AdminComponent from './admin/admin.component';
 import D3ColorPickerComponent from './d3colorpicker/colorpicker.component';
 import ColorMeComponent from './colorme/colorme.component';
 import OutroComponent from './outro/outro.component';
+import FirebaseService from './firebase/firebase.service';
 
 export default module('app', [
     'ngMaterial',
     'angular-logger',
+    'firebase',
     AppTheme.name,
     AppRoutes.name,
     ToolbarComponent.name,
@@ -21,6 +23,8 @@ export default module('app', [
     D3ColorPickerComponent.name,
     ColorMeComponent.name,
     OutroComponent.name,
+    FirebaseService.name,
+
 ]).component('app', {
     template: `<md-content ng-cloak><div ui-view></div></md-content>`,
     restrict: 'E'
