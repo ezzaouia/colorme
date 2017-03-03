@@ -97,7 +97,7 @@ export class D3ColorPicker {
         this.svgWidth = _.size(this.colors) * (this.squareWidth + this.squareHPad) + this.margin.left + this.margin.right;
         this.svgHeight = this.colorLevels * (this.squareHeight + this.squareVPad) + this.margin.top + this.margin.bottom + this.squareVPad + this.currentHoveredColorH + this.currentHoveredColorH;
         this.currentSelectedColor;
-        
+
     }
 
     draw(domElement) {
@@ -105,7 +105,7 @@ export class D3ColorPicker {
         let squareVPad = this.squareVPad;
         let squareHPad = this.squareHPad;
         let currentHoveredColorH = this.currentHoveredColorH;
-        let currentSelectedColor  = {selectedColor: '', colorLevelIndex: -1, colorIndex:  -1};
+        let currentSelectedColor = { selectedColor: '', colorLevelIndex: -1, colorIndex: -1 };
         this.currentSelectedColor = currentSelectedColor;
 
         // init
@@ -139,14 +139,18 @@ export class D3ColorPicker {
                         .attr('y', index * (squareWidth + squareVPad))
                         .classed('rect-color', true)
                         .on('mouseover', function () {
+                            let sselt = this;
                             d3.selectAll('.rect-color').attr('stroke', 'none')
-                            d3.select(this).attr('stroke', '#eee')
+                            d3.select(this).filter(function () {
+                                return d3.select(sselt).attr('class') !== 'clicked-rect-color';
+                            }).attr('stroke', '#eee')
                             d3.select(this).attr('stroke-width', 2)
                             let curretColor = d3.select(this).attr('fill');
                             d3.selectAll('.current-color').attr('fill', curretColor);
                         })
                         .on('click', function () {
-                            d3.selectAll('.selected-color').attr('stroke', 'none')
+                            d3.selectAll('.clicked-rect-color').attr('stroke', 'none')
+                            d3.select(this).attr('class', 'clicked-rect-color');
                             d3.select(this).attr('stroke', '#555')
                             d3.select(this).attr('stroke-width', 2)
                             let curretColor = d3.select(this).attr('fill');
@@ -155,7 +159,6 @@ export class D3ColorPicker {
                             currentSelectedColor['colorLevelIndex'] = index;
                             currentSelectedColor['colorIndex'] = i;
                         })
-
                 }); // end each
             }); // attr d
 

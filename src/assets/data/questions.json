@@ -1,7 +1,7 @@
 [
     {
-        "title": "fear",
-        "description": "fear is lorem lorem lorem",
+        "title": "colorme.html.title.fear",
+        "description": "colorme.html.description.fear",
         "items": [
             {
                 "item": "",
@@ -10,8 +10,8 @@
         ]
     },
     {
-        "title": "anger",
-        "description": "fear is lorem lorem lorem",
+        "title": "colorme.html.title.anger",
+        "description": "colorme.html.description.anger",
         "items": [
             {
                 "item": "",
@@ -20,8 +20,8 @@
         ]
     },
     {
-        "title": "happiness",
-        "description": "fear is lorem lorem lorem",
+        "title": "colorme.html.title.happiness",
+        "description": "colorme.html.description.happiness",
         "items": [
             {
                 "item": "",
@@ -30,8 +30,8 @@
         ]
     },
     {
-        "title": "sadness",
-        "description": "fear is lorem lorem lorem",
+        "title": "colorme.html.title.sadness",
+        "description": "colorme.html.description.sadness",
         "items": [
             {
                 "item": "",
@@ -40,8 +40,38 @@
         ]
     },
     {
-        "title": "calm",
-        "description": "fear is lorem lorem lorem",
+        "title": "colorme.html.title.neutral",
+        "description": "colorme.html.description.neutral",
+        "items": [
+            {
+                "item": "",
+                "item-type": ""
+            }
+        ]
+    },
+    {
+        "title": "colorme.html.title.contempt",
+        "description": "colorme.html.description.contempt",
+        "items": [
+            {
+                "item": "",
+                "item-type": ""
+            }
+        ]
+    },
+    {
+        "title": "colorme.html.title.disgust",
+        "description": "colorme.html.description.disgust",
+        "items": [
+            {
+                "item": "",
+                "item-type": ""
+            }
+        ]
+    },
+    {
+        "title": "colorme.html.title.surprise",
+        "description": "colorme.html.description.surprise",
         "items": [
             {
                 "item": "",

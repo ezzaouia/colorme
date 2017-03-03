@@ -52,7 +52,6 @@ class ColorMeController extends D3ColorPicker {
     }
 
     next() {
-        this.log('next fired');
         if (!!!(this.currentSelectedColor && this.currentSelectedColor.selectedColor && this.currentSelectedColor.selectedColor)) {
             this.showSimpleToast('Please select a color!')
             return;
@@ -67,7 +66,7 @@ class ColorMeController extends D3ColorPicker {
             super.draw(this.$element[0]);
         }
         else {
-            this.showSimpleToast('Thank you!!')
+            this.showSimpleToast('Thank You!!')
             this.$state.go('outro');
         }
     }
@@ -75,7 +74,6 @@ class ColorMeController extends D3ColorPicker {
     save() {
         this.currentSelectedColor = Object.assign(this.currentSelectedColor, { question: this.currentQuestion.title }, {clientId: window.clientId})
         this.responses.$add(this.currentSelectedColor);
-        this.log(this.currentSelectedColor);
     }
 
     showSimpleToast(msg) {

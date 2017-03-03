@@ -34,3 +34,5 @@ import './assets/font/fira_code.scss';
 import 'firebase';
 
 import 'angularfire';
+
+import 'angular-translate';

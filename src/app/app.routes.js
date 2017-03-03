@@ -7,13 +7,17 @@ function routeConfig($urlRouterProvider, $stateProvider, $locationProvider) {
 
   $stateProvider
 
+    .state('signin', {
+      url: '/signin',
+      component: 'signin',
+    })
     .state('home', {
       url: '/intro',
       component: 'home'
     })
     .state('admin', {
       url: '/admin',
-      component: 'admin'
+      component: 'admin',
     })
     .state('outro', {
       url: '/outro',

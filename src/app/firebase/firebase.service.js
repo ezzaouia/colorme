@@ -1,7 +1,6 @@
 import { module } from 'angular';
 import Firebase from 'firebase';
 
-
 let config = {
 
     apiKey: FRB_API_KEY,
@@ -14,12 +13,11 @@ let config = {
 Firebase.initializeApp(config);
 
 const ref = Firebase.database().ref();
+//Firebase.database.enableLogging(true);
 
 class FirebaseService {
     constructor() {
         this.ref = ref;
-        this.auth = Firebase.auth();
-
     }
 
 }
