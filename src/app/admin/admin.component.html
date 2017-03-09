@@ -1,1 +1,72 @@
-admin
+<div flex="100" flex-gt-md="100">
+    <div class="padding-0">
+        <div layout="row" layout-align="end end">
+            <md-button class="md-raised" ng-click="admin.createNewColorMez()" ng-hide="admin.isOpenRight()">
+                New ColorMe!
+            </md-button>
+        </div>
+    </div>
+</div>
+
+<div style="height:500px;">
+
+
+    <div class="usercolormezz">
+        <md-card ng-repeat="app in admin.usercolormezz">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{app.appname}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p>
+                    {{app.description}}
+                </p>
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="right">
+        <md-content layout-padding>
+            <div layout="column" layout-align="center center">
+                <h3 class="md-headline">Your colorMe! App</h3>
+                <form >
+                    <md-input-container class="md-block">
+                        <label for="appname">App name</label>
+                        <input type="text" id="appname" ng-model="admin.colormez.appname" md-autofocus>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label for="description">App description</label>
+                        <textarea id="description" ng-model="admin.colormez.description" md-autofocus md-maxlength="100" rows="3"></textarea>
+                    </md-input-container>
+                    <!-- items part -->
+                    <div ng-repeat="item in admin.items track by $index">
+                        <md-input-container class="md-block">
+                            <label for="itemtitle">Title</label>
+                            <input type="text" id="itemtitle" ng-model="item.title" md-autofocus>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label for="itemdescription">Item description</label>
+                            <textarea id="itemdescription" ng-model="item.description" md-autofocus md-maxlength="500" rows="2"></textarea>
+                        </md-input-container>
+                        <md-button ng-click="admin.removeItem($index)">
+                            <i class="material-icons">remove_circle</i> Items
+                        </md-button>
+                    </div>
+
+                    <md-button class="md-raised" ng-click="admin.addItem()">
+                        <i class="material-icons">add_circle</i> Items
+                    </md-button>
+
+                </form>
+
+                <md-button ng-click="admin.addColorMezz()">add apps</md-button>
+
+                <md-button ng-click="admin.closeRight()" class="md-raised md-primary">
+                    Close
+                </md-button>
+            </div>
+        </md-content>
+    </md-sidenav>
+
+</div>

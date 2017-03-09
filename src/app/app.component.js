@@ -10,6 +10,8 @@ import D3ColorPickerComponent from './d3colorpicker/colorpicker.component';
 import ColorMeComponent from './colorme/colorme.component';
 import OutroComponent from './outro/outro.component';
 import FirebaseService from './firebase/firebase.service';
+import SigninCompoenent from './signin/signin.component';
+import AuthService from './auth/auth.service';
 
 
 export default module('app', [
@@ -26,9 +28,12 @@ export default module('app', [
     ColorMeComponent.name,
     OutroComponent.name,
     FirebaseService.name,
+    AuthService.name,
+    SigninCompoenent.name,
 
 ]).component('app', {
-    template: `<md-content ng-cloak><div ui-view></div></md-content>`,
+    template: `<toolbar></toolbar>
+                <md-content ng-cloak><div ui-view></div></md-content>`,
     restrict: 'E',
 })
     .config(['$translateProvider', function ($translateProvider) {

@@ -4,8 +4,15 @@
     <i class="material-icons md-24" style="color: grey">color_lens</i>
     </span> {{ 'toolbar.html.appname' | translate}}
     <span flex></span>
-    <!--<md-button class="toolbar-button" ui-sref="admin" aria-label="Notifications">
-      <i class="fa fa-user-plus" aria-hidden="true"></i>
-    </md-button>-->
+
+    <md-button class="toolbar-button" ui-sref="home" aria-label="go home">
+      <i class="fa fa-home" aria-hidden="true"></i>
+    </md-button>
+    <md-button class="toolbar-button" ui-sref="admin" aria-label="go admin">
+      <i class="fa fa-pencil" aria-hidden="true"></i>
+    </md-button>
+    <md-button ng-show="toolbar.isAuthenticated()" class="toolbar-button" ng-click="toolbar.logout()" aria-label="logout">
+      <i class="fa fa-sign-out" aria-hidden="true"></i>
+    </md-button>
   </div>
 </md-toolbar>

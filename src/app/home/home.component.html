@@ -1,3 +1,19 @@
-<toolbar></toolbar>
-
-<colorme></colorme>
+<!--<colorme></colorme>-->
+<div class="colormezz">
+    <md-card ng-repeat="colormez in home.colormezz">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{colormez.appname}}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <p>
+                {{colormez.description}}
+            </p>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-click="home.participate(colormez.useruid, colormez.$id)">Participate</md-button>
+            <md-button ng-click="home.getResult(userId, colormezId)">Get Result</md-button>
+        </md-card-actions>
+    </md-card>
+</div>

@@ -1,11 +1,19 @@
 <div class="md-whiteframe-z1 colorme">
-    <div class="title">{{colorme.currentQuestion.title |  translate}}</div>
-    <div class="description">{{colorme.currentQuestion.description |  translate }}</div>
+    <div class="title">{{colorme.currentQuestion.title | translate}}</div>
+    <div class="description">{{colorme.currentQuestion.description | translate }}</div>
 
     <div id="d3colorpicker"></div>
+
+    <md-input-container class="md-block">
+        <label for="description">Want to add something..!!</label>
+        <textarea id="description" ng-model="colorme.currentquestiontextarea" md-autofocus md-maxlength="20" rows="2"></textarea>
+    </md-input-container>
+
+    {{colorme.currentquestiontextarea}}
+
 
     <md-button ng-click="colorme.next()" class="md-fab md-primary" aria-label="next">
         <i class="material-icons">navigate_next</i>
     </md-button>
-    
+
 </div>

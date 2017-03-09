@@ -17,9 +17,10 @@ const ref = Firebase.database().ref();
 
 class FirebaseService {
     constructor() {
+        'ngInject'
         this.ref = ref;
+        this.auth = Firebase.auth();
     }
-
 }
 
 

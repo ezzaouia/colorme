@@ -4,20 +4,37 @@ import './toolbar.component.scss';
 
 class ToolbarController {
 
-    constructor($log, $rootScope) {
+    constructor($log, $rootScope, Auth, $scope, $state) {
         'ngInject'
         this.$log = $log.getInstance(ToolbarController.name);
+        this.Auth = Auth;
+        this.$scope = $scope;
+        this.$state = $state;
     }
 
     log(...msg) {
         this.$log.debug(...msg);
     }
+
+    isAuthenticated() {
+        return this.Auth.isAuthenticated();
+    }
+
+    logout() {
+        this.Auth.logout()
+            .then(() => {
+                if (this.$state.current.name === 'admin')
+                    this.$state.go('home');
+                this.$scope.$digest();
+            });
+    }
+
 }
 
 const ToolbarComponent = {
     template,
     restricted: 'E',
-    controllerAs: 'vm',
+    controllerAs: 'toolbar',
     controller: ToolbarController,
 };
 
