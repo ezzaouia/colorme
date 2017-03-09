@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    md-card {
+        max-width: 300px;
+    }
 }
 
 .admin-actions {
