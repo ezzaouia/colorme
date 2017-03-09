@@ -34,6 +34,7 @@ class ColorMeController extends D3ColorPicker {
     $onInit() {
         if (!!!(this.$stateParams && this.$stateParams.colormezid)) {
             this.$state.go('home');
+            return;
         }
         super.draw(this.$element[0]);
         /** responses collection */
